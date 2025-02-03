@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Everything is about Yofa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="#">Yofa Azhari</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#kenangan">Kenangan</a></li>
+                    <li class="nav-item position-relative">
+                        <button class="nav-link" href="#menuOverlay" id="menuOverlay">Menu</button>
+                        <!-- <a class="nav-link" href="#" id="menuLink"></a> -->
+                        <!-- Overlay Dropdown -->
+                        <div id="menuOverlay" class="overlay-menu">
+                            <ul>
+                                <li><a href="#kenangan">Kenangan</a></li>
+                                <li><a href="#friendship-timer">Timeline</a></li>
+                                <li><a href="#photos">Permainan</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-center py-5 bg-light" data-aos="fade-down">
+        <h1 class="fw-bold">Selamat Datang di Dunia Yofa</h1>
+        <p class="text-muted">"Ini adalah perjalanan penuh kenangan"</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Timer Section -->
+        <section id="friendship-timer" class="text-center my-5" data-aos="fade-up">
+            <h2 class="fw-bold">Timeline Persahabatan</h2>
+            <p class="text-muted">Muji dan Yofa telah bersahabat selama:</p>
+            <h3 id="counter" class="text-primary fw-bold"></h3>
+        </section>
+
+        <!-- Kenangan Section -->
+        <section id="kenangan" class="text-center mb-5" data-aos="fade-right">
+            <h2 class="fw-bold">Kenangan Bersama</h2>
+            <p>Yofa adalah sahabat sejati yang penuh cerita dan tawa.</p>
+        </section>
+
+        <!-- Carousel Section -->
+        <section id="photos" class="mb-5" data-aos="fade-left">
+            <h2 class="text-center mb-4 fw-bold">Permainan Favorit</h2>
+            <div id="imageCarousel" class="carousel slide shadow rounded" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/Minecraft.jpeg" class="d-block w-100" alt="Minecraft">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/ben10.jpeg" class="d-block w-100" alt="Ben 10">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/Plant_vs_zombie.jpeg" class="d-block w-100" alt="Plants vs Zombies">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Yofa Azhari. Temukan lebih banyak di <a href="#" class="text-info">Instagram</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Timer Script
+        const startDate = new Date("2019-08-05T07:00:00");
+        setInterval(() => {
+            const now = new Date();
+            const elapsed = now - startDate;
+            const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((elapsed / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((elapsed / (1000 * 60)) % 60);
+            const seconds = Math.floor((elapsed / 1000) % 60);
+            document.getElementById("counter").textContent = 
+                `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
+        }, 1000);
+
+        // Overlay Menu Script
+        const menuLink = document.getElementById('menuLink');
+        const menuOverlay = document.getElementById('menuOverlay');
+        menuLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            menuOverlay.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuOverlay.contains(e.target) && e.target !== menuLink) {
+                menuOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

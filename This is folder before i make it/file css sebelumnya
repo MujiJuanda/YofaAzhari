@@ -1,0 +1,153 @@
+/* Global Styles */
+body {
+    font-family: 'Cadson Demak', sans-serif; 
+    background-color: #f4f6f9; 
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Section */
+header {
+    background-color: #007bff; 
+    background-image: url('/images/Minecraft.jpeg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+header h1 {
+    font-family: 'Tiny5', sans-serif;
+    font-size: 3rem; 
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem; 
+    margin: 0;
+}
+
+/* Article Styles */
+article {
+    font-family: 'Tiny5', sans-serif;
+    margin-bottom: 2rem; 
+    padding: 1.5rem;
+    border: 1px solid #198ae6; 
+    border-radius: 15px;
+    background-color: #f7f2ff; 
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.1); 
+}
+
+/* Sidebar / Images */
+aside {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 1rem;
+}
+
+aside img {
+    max-width: 90%; 
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s; 
+}
+
+aside img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Bar */
+.nav-link {
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #2883a7; 
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #2883a7; 
+    border: none; 
+    border-radius: 15px; 
+    padding: 0.75rem 1.5rem; 
+    transition: background-color 0.3s; 
+}
+
+.btn-primary:hover {
+    background-color: #218838; 
+}
+
+/* Fonts */
+.tiny5-regular {
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+/* Category Menu */
+.category-menu {
+    margin: 2rem 0;
+}
+
+.category-menu .card {
+    transition: transform 0.3s;
+}
+
+.category-menu .card:hover {
+    transform: scale(1.05);
+}
+
+/* Carousel */
+.carousel-item img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.overlay-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 15px;
+    z-index: 10;
+    width: 200px;
+}
+
+.overlay-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ .overlay-menu ul li {
+    margin: 10px 0;
+}
+
+.overlay-menu ul li a {
+text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.overlay-menu ul li a:hover {
+    color: #007bff;
+}

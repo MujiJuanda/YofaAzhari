@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Peserta Lomba</title>
+    <link rel="stylesheet" href="../form-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Formulir Pendaftaran Peserta Lomba</h1>
+    </header>
+    
+    <main>
+        <form action="submit-pendaftaran.php" method="post">
+            <label for="nama">Nama Peserta :</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="example123@gmail.com" required>
+
+            <label for="nomor">Nomor Telepon :</label>
+            <input type="tel" id="nomor" name="nomor" placeholder="+62|" required>
+
+            <label for="jenis_kelamin">Jenis Kelamin:</label>
+            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="laki-laki">Laki-Laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+
+            <label for="kategori">Kategori Lomba:</label>
+            <select id="kategori" name="kategori" required>
+                <option value="">Pilih Kategori Lomba</option>
+                <option value="futsal">Minecraft</option>
+                <option value="badminton">Mobile Legends</option>
+            </select>
+
+            <label for="pesan">Jika Lomba Mobile legends, isikan nama Tim :</label>
+            <textarea id="pesan" name="pesan" rows="4" cols="50" placeholder="Nama Tim dan Anggota..."></textarea>
+
+            <button type="submit">SUBMIT</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Panitia Lomba Olahraga</p>
+    </footer>
+</body>
+</html>
