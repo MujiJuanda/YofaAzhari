@@ -5,6 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Yofa Azhari</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBhcMw3dcuPDi2fnva6BRX6AoBbkUd7Q_c",
+      authDomain: "web-yofa-azhari.firebaseapp.com",
+      projectId: "web-yofa-azhari",
+      storageBucket: "web-yofa-azhari.appspot.com",
+      messagingSenderId: "709325503857",
+      appId: "1:709325503857:web:5adc4dd1f7f7e8e5e28ad0",
+      measurementId: "G-MK1ERYFZDF"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <style>
+    /* Styling */
+    input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 90%;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+
 </head>
 <body>
   <div class="container">
@@ -16,17 +58,40 @@
     <!-- Right Section for Form -->
     <div class="form-section">
       <div class="login-box">
-        <img src="" alt="Goku" class="goku-image">
         <h2>Selamat Datang Sahabatku Yofa</h2>
-        <input type="nama" placeholder="Masukkan Nama Lengkap Yofa" required>
-        <input type="tgl_lahir" placeholder="Masukkan Tgl Lahir Yofa" required>
-        <div class="note">Format penulisan yang benar: <a class="note-style">12 Januari 1234</a></div>
-        <button>Masuk</button>
+
+        <input type="text" id="nama" placeholder="Masukkan Nama Lengkap Yofa" required>
+        <input type="text" id="tgl_lahir" placeholder="Masukkan Tgl Lahir Yofa (Format: 12 Januari 1234)" required>
+
+        <button onclick="login()">Masuk</button>
+
         <p style="margin-top: 10px;">
-          Lupa nama sahabatku? <a href="opsimasuk.html" class="forget-link">Ubah cara masuk</a>
+          Lupa nama sahabatku? <a href="" class="forget-link">Ubah cara masuk</a>
         </p>
       </div>
     </div>
   </div>
+
+  <script>
+    function login() {
+      const nama = document.getElementById('nama').value;
+      const tglLahir = document.getElementById('tgl_lahir').value;
+
+      // Cek data nama dan tanggal lahir di Firestore
+      db.collection("users").where("nama", "==", nama).where("tgl_lahir", "==", tglLahir).get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            alert("Nama atau Tanggal Lahir salah!");
+          } else {
+            // Login berhasil, jika data ditemukan
+            alert("Login Berhasil!");
+            window.location.href = "Home/index.html"; // pindah halaman
+          }
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
+    }
+  </script>
 </body>
 </html>
