@@ -78,7 +78,7 @@
       const tglLahir = document.getElementById('tgl_lahir').value;
 
       // Cek data nama dan tanggal lahir di Firestore
-      db.collection("users").where("nama", "==", nama).where("tgl_lahir", "==", tglLahir).get()
+      db.collection("yofa").where("nama", "==", nama).where("tgl_lahir", "==", tglLahir).get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
             alert("Nama atau Tanggal Lahir salah!");
