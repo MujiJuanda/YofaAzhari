@@ -74,8 +74,11 @@
 
   <script>
     function login() {
-      const nama = document.getElementById('nama').value;
-      const tglLahir = document.getElementById('tgl_lahir').value;
+      const nama = document.getElementById('nama').value.trim();  // Lowercase untuk pencocokan
+      const tglLahir = document.getElementById('tgl_lahir').value.trim();  // Lowercase untuk pencocokan
+
+      console.log('Nama yang dimasukkan:', nama);  // Debugging log
+      console.log('Tanggal Lahir yang dimasukkan:', tglLahir);  // Debugging log
 
       // Cek data nama dan tanggal lahir di Firestore
       db.collection("yofa").where("nama", "==", nama).where("tgl_lahir", "==", tglLahir).get()
@@ -85,10 +88,11 @@
           } else {
             // Login berhasil, jika data ditemukan
             alert("Login Berhasil!");
-            window.location.href = "Home/index.html"; // pindah halaman
+            window.location.href = "home.html"; // pindah halaman ke home.html
           }
         })
         .catch((error) => {
+          console.error("Error:", error); // Menambahkan log error
           alert("Error: " + error.message);
         });
     }
