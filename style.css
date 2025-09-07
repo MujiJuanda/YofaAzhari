@@ -1,125 +1,153 @@
+/* Global Styles */
 body {
+    font-family: 'Cadson Demak', sans-serif; 
+    background-color: #f4f6f9; 
     margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    background-image: url('../Web Yofa/images/Minecraftview.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+    padding: 0;
+}
 
-.container {
-  display: flex;
-  width: 100%;
-  height: 100%;
+/* Header Section */
+header {
+    background-color: #007bff; 
+    background-image: url('/images/Minecraft.jpeg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
-.image-section {
-  flex: 1.2; /* Sedikit lebih besar dari form */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+header h1 {
+    font-family: 'Tiny5', sans-serif;
+    font-size: 3rem; 
+    margin-bottom: 0.5rem;
 }
-.image-section img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 12px solid #f8f9fa; /* Warna bingkai putih atau pastel */
-  border-radius: 20px; /* Sudut melengkung */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
-  transition: transform 0.3s ease; /* Efek saat gambar berganti */
+
+header p {
+    font-size: 1.2rem; 
+    margin: 0;
 }
-.image-section img:hover {
-  transform: scale(1.05); /* Zoom saat dihover */
+
+/* Article Styles */
+article {
+    font-family: 'Tiny5', sans-serif;
+    margin-bottom: 2rem; 
+    padding: 1.5rem;
+    border: 1px solid #198ae6; 
+    border-radius: 15px;
+    background-color: #f7f2ff; 
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.1); 
 }
-.form-section {
-  flex: 0.8; /* Sedikit lebih kecil dari image */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  position: relative; /* Untuk menempatkan elemen lain di atas form */
+
+/* Sidebar / Images */
+aside {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 1rem;
 }
-.login-box {
-  background: rgb(0, 255, 191);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(5, 125, 141, 0.1);
-  text-align: center;
-  width: 80%;
-  max-width: 400px;
-  position: relative;
-  z-index: 2; /* Memastikan login box di atas gambar Goku */
+
+aside img {
+    max-width: 90%; 
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s; 
 }
-.goku-image {
-  position: absolute;
-  top: -60px; /* Menempatkan gambar di atas login box */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px; /* Ukuran gambar */
-  height: auto;
-  z-index: 1; /* Memastikan gambar Goku di bawah login box */
+
+aside img:hover {
+    transform: scale(1.05);
 }
-.login-box h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+
+/* Navigation Bar */
+.nav-link {
+    transition: all 0.3s ease-in-out;
 }
-.login-box input {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 15px;
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #2883a7; 
 }
-.login-box button {
-  width: 60%;
-  padding: 10px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 16px;
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2); 
 }
-.login-box button:hover {
-  background: #0056b3;
+
+/* Buttons */
+.btn-primary {
+    background-color: #2883a7; 
+    border: none; 
+    border-radius: 15px; 
+    padding: 0.75rem 1.5rem; 
+    transition: background-color 0.3s; 
 }
-.forget-link {
-  color: #0004ff;
-  text-decoration: none;
-  font-size: 14px;
+
+.btn-primary:hover {
+    background-color: #218838; 
 }
-.forget-link:hover {
-  text-decoration: underline;
-  color: #0056b3;
+
+/* Fonts */
+.tiny5-regular {
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+/* Category Menu */
+.category-menu {
+    margin: 2rem 0;
 }
-.note {
-  font-size: 12px;
-  color: #2a2a38;
-  margin-top: 1px; /* Adjusted to make it closer to the input */
-  text-align: left;
-  width: 80%; /* Match input width */
-  margin-left: 10%; /* Center align under the input */
+
+.category-menu .card {
+    transition: transform 0.3s;
 }
-.note-style {
-  color: #0004ff;
-  cursor: pointer;
-  position: relative;
+
+.category-menu .card:hover {
+    transform: scale(1.05);
 }
-.note-style:hover::before {
-  content: "Tgl Bulan Tahun";
-  position: absolute;
-  top: -25px; /* Adjust position to appear above the text */
-  left: 50%;
-  transform: translateX(-50%);
-  background: #f0f0f0;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-  font-size: 12px;
-  color: #333;
+
+/* Carousel */
+.carousel-item img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.overlay-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 15px;
+    z-index: 10;
+    width: 200px;
+}
+
+.overlay-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ .overlay-menu ul li {
+    margin: 10px 0;
+}
+
+.overlay-menu ul li a {
+text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.overlay-menu ul li a:hover {
+    color: #007bff;
 }
