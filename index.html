@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Yofa Azhari</title>
-<!--   <link rel="stylesheet" href="style.css"> -->
 
-  <!-- Firebase App (the core Firebase SDK) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 
@@ -22,40 +21,115 @@
       measurementId: "G-MK1ERYFZDF"
     };
 
-    // Initialize Firebase
+    // Init Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
 
   <style>
-    /* Styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    /* Bagian gambar */
+    .image-section {
+      flex: 1;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Bagian form */
+    .form-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+
     input {
       display: block;
-      margin-bottom: 10px;
+      margin: 10px auto;
       padding: 8px;
       width: 90%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
+
     button {
       padding: 8px 16px;
       background-color: #4CAF50;
       color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
+      width: 100%;
     }
+
     button:hover {
       background-color: #45a049;
     }
-  </style>
 
+    /* Popup */
+    .popup {
+      display: none; /* sembunyikan dulu */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+
   <div class="container">
-    <!-- Left Section for Image -->
+    <!-- Left: Gambar -->
     <div class="image-section">
       <img src="images/Minecrafthouse.jpeg" alt="Minecraft Background">
     </div>
 
-    <!-- Right Section for Form -->
+    <!-- Right: Form Login -->
     <div class="form-section">
       <div class="login-box">
         <h2>Selamat Datang Sahabatku Yofa</h2>
@@ -66,42 +140,54 @@
         <button onclick="login()">Masuk</button>
 
         <p style="margin-top: 10px;">
-          Lupa nama sahabatku? <a class="forget-link" onclick="openmenu()">Ubah cara masuk</a>
+          Lupa nama sahabatku? 
+          <a class="forget-link" onclick="openmenu()">Ubah cara masuk</a>
         </p>
       </div>
     </div>
   </div>
 
+  <!-- Popup -->
   <div id="popup" class="popup">
     <div class="popup-content">
       <h3>Pilih Cara Masuk</h3>
       <p>MAAF UNTUK SEKARANG BELUM SIAP KUBUAT, karena kita jarang ketemu tidak ada referensi</p>
+      <button class="close-btn" onclick="closemenu()">Tutup</button>
     </div>
   </div>
 
   <script>
     function login() {
-      const nama = document.getElementById('nama').value.trim();  // Lowercase untuk pencocokan
-      const tglLahir = document.getElementById('tgl_lahir').value.trim();  // Lowercase untuk pencocokan
+      const nama = document.getElementById('nama').value.trim();
+      const tglLahir = document.getElementById('tgl_lahir').value.trim();
 
-      console.log('Nama yang dimasukkan:', nama);  // Debugging log
-      console.log('Tanggal Lahir yang dimasukkan:', tglLahir);  // Debugging log
-
-      // Cek data nama dan tanggal lahir di Firestore
-      db.collection("yofa").where("nama", "==", nama).where("tgl_lahir", "==", tglLahir).get()
+      // Cek data di Firestore
+      db.collection("yofa")
+        .where("nama", "==", nama)
+        .where("tgl_lahir", "==", tglLahir)
+        .get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
             alert("Nama atau Tanggal Lahir salah!");
           } else {
-            // Login berhasil, jika data ditemukan
             alert("Login Berhasil!");
-            window.location.href = "home.html"; // pindah halaman ke home.html
+            window.location.href = "home.html";
           }
         })
         .catch((error) => {
-          console.error("Error:", error); // Menambahkan log error
+          console.error("Error:", error);
           alert("Error: " + error.message);
         });
+    }
+
+    // Buka Popup
+    function openmenu() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    // Tutup Popup
+    function closemenu() {
+      document.getElementById("popup").style.display = "none";
     }
   </script>
 </body>
