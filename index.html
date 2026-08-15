@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Yofa Azhari</title>
 
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Konfigurasi Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBhcMw3dcuPDi2fnva6BRX6AoBbkUd7Q_c",
       authDomain: "web-yofa-azhari.firebaseapp.com",
@@ -21,146 +19,370 @@
       measurementId: "G-MK1ERYFZDF"
     };
 
-    // Init Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
 
   <style>
+    * { box-sizing: border-box; }
+
+    @import url('https://fonts.googleapis.com/css2?family=Tiny5&family=Poppins:wght@400;500;600;700;800&display=swap');
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
+      min-height: 100vh;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #101812;
+      overflow: hidden;
     }
 
     .container {
-      display: flex;
-      width: 100%;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
     }
 
-    /* Bagian gambar */
     .image-section {
-      flex: 1;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      background: #17251a;
     }
 
     .image-section img {
       width: 100%;
       height: 100%;
+      display: block;
       object-fit: cover;
+      object-position: center;
+      filter: saturate(1.08);
+      transform: scale(1.02);
     }
 
-    /* Bagian form */
+    .image-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,10,6,0.08) 0%, rgba(5,10,6,0.05) 55%, rgba(5,10,6,0.68) 100%),
+        linear-gradient(0deg, rgba(0,0,0,0.35), transparent 45%);
+      pointer-events: none;
+    }
+
+    .image-caption {
+      position: absolute;
+      z-index: 2;
+      left: 42px;
+      bottom: 36px;
+      color: white;
+      text-shadow: 0 3px 12px rgba(0,0,0,.7);
+    }
+
+    .image-caption .small {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    .image-caption h1 {
+      margin: 6px 0 0;
+      font-family: 'Tiny5', monospace;
+      font-size: clamp(34px, 4vw, 64px);
+      letter-spacing: 2px;
+    }
+
     .form-section {
-      flex: 1;
+      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: #f4f4f4;
+      justify-content: center;
+      padding: 35px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(76,175,80,.14), transparent 28%),
+        #f4f6f2;
     }
 
     .login-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      width: 300px;
-      text-align: center;
+      width: min(420px, 100%);
+      padding: 42px 42px 34px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 24px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.14);
+      text-align: left;
+      animation: appear .7s ease;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #edf7ed;
+      color: #37833a;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4caf50;
+      box-shadow: 0 0 0 4px rgba(76,175,80,.12);
+    }
+
+    .login-box h2 {
+      margin: 0;
+      color: #172019;
+      font-size: clamp(27px, 2.5vw, 36px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .subtitle {
+      margin: 12px 0 28px;
+      color: #778078;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .field-label {
+      display: block;
+      margin: 0 0 7px;
+      color: #39433b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .input-wrap {
+      margin-bottom: 18px;
     }
 
     input {
       display: block;
-      margin: 10px auto;
-      padding: 8px;
-      width: 90%;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
       width: 100%;
+      height: 50px;
+      padding: 0 15px;
+      border: 1.5px solid #dce2dc;
+      border-radius: 13px;
+      outline: none;
+      background: #fbfcfb;
+      color: #202720;
+      font-family: inherit;
+      font-size: 14px;
+      transition: .2s;
     }
 
-    button:hover {
-      background-color: #45a049;
+    input:focus {
+      border-color: #4caf50;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(76,175,80,.10);
     }
 
-    /* Popup */
+    .format {
+      margin: -9px 0 20px;
+      color: #969e97;
+      font-size: 11px;
+    }
+
+    button.login-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #58bd5c, #3f9f43);
+      color: white;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 9px 20px rgba(63,159,67,.23);
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+
+    button.login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(63,159,67,.30);
+    }
+
+    button.login-btn:active { transform: translateY(0); }
+
+    button.login-btn:disabled {
+      opacity: .7;
+      cursor: wait;
+    }
+
+    .forget {
+      margin: 22px 0 0;
+      text-align: center;
+      color: #8a918b;
+      font-size: 12px;
+    }
+
+    .forget-link {
+      color: #34863a;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .forget-link:hover { text-decoration: underline; }
+
+    .footer-note {
+      margin-top: 25px;
+      text-align: center;
+      color: #b0b5b1;
+      font-size: 10px;
+      letter-spacing: .5px;
+    }
+
     .popup {
-      display: none; /* sembunyikan dulu */
+      display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      inset: 0;
+      z-index: 20;
+      background: rgba(8,12,9,.65);
+      backdrop-filter: blur(5px);
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
     .popup-content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
+      width: min(390px, 100%);
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
       text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,.3);
+      animation: popup .25s ease;
+    }
+
+    .popup-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .popup-content h3 {
+      margin: 0 0 10px;
+      color: #202720;
+    }
+
+    .popup-content p {
+      color: #747c75;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .close-btn {
       margin-top: 10px;
-      padding: 5px 10px;
-      background: red;
+      padding: 11px 22px;
+      background: #e74c3c;
       color: white;
-      border: none;
-      border-radius: 5px;
+      border: 0;
+      border-radius: 10px;
       cursor: pointer;
-    }
-    .forget-link {
-      color: blue;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    .forget-link:hover {
-      color: darkblue;
+      font-weight: 600;
     }
 
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popup {
+      from { opacity: 0; transform: scale(.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 800px) {
+      body { overflow: auto; }
+      .container { grid-template-columns: 1fr; }
+      .image-section {
+        min-height: 38vh;
+        height: 38vh;
+      }
+      .image-caption { left: 24px; bottom: 22px; }
+      .image-caption h1 { font-size: 38px; }
+      .form-section {
+        min-height: 62vh;
+        padding: 25px 18px;
+      }
+      .login-box {
+        padding: 30px 24px 25px;
+        border-radius: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="container">
-    <!-- Left: Gambar -->
+
     <div class="image-section">
-      <img src="images/Minecrafthouse.jpeg" alt="Minecraft Background">
-    </div>
-
-    <!-- Right: Form Login -->
-    <div class="form-section">
-      <div class="login-box">
-        <h2>Selamat Datang Sahabatku Yofa</h2>
-
-        <input type="text" id="nama" placeholder="Masukkan Nama Lengkap Yofa" required>
-        <input type="text" id="tgl_lahir" placeholder="Masukkan Tgl Lahir Yofa" required>
-        <p style="font-size: 12px; color: gray; margin-top: 5px;">(Format penulisan: 12 Januari 1234)</p> 
-        <button onclick="login()">Masuk</button>
-
-        <p style="margin-top: 10px;">
-          Lupa nama sahabatku? 
-          <a class="forget-link" onclick="openmenu()">Ubah cara masuk</a>
-        </p>
+      <img src="images/Minecrafthouse.jpeg" alt="Minecraft House">
+      <div class="image-caption">
+        <div class="small">A little world for a special friend</div>
+        <h1>YOFA AZHARI</h1>
       </div>
     </div>
+
+    <div class="form-section">
+      <div class="login-box">
+
+        <div class="badge">
+          <span class="dot"></span>
+          PRIVATE FRIENDSHIP SPACE
+        </div>
+
+        <h2>Selamat Datang,<br>Sahabatku Yofa 👋</h2>
+
+        <p class="subtitle">
+          Masukkan data yang benar untuk membuka<br>
+          halaman khusus yang sudah disiapkan untukmu.
+        </p>
+
+        <div class="input-wrap">
+          <label class="field-label" for="nama">Nama Lengkap Yofa</label>
+          <input type="text" id="nama" placeholder="Masukkan nama lengkap Yofa" autocomplete="name">
+        </div>
+
+        <div class="input-wrap">
+          <label class="field-label" for="tgl_lahir">Tanggal Lahir</label>
+          <input type="text" id="tgl_lahir" placeholder="Contoh: 12 Januari 1234">
+        </div>
+
+        <p class="format">Gunakan format: 12 Januari 1234</p>
+
+        <button class="login-btn" id="loginButton" onclick="login()">
+          Masuk ke Halaman ✦
+        </button>
+
+        <p class="forget">
+          Lupa nama sahabatku?
+          <a class="forget-link" onclick="openmenu()">Ubah cara masuk</a>
+        </p>
+
+        <div class="footer-note">Made specially for Yofa Azhari ♡</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Popup -->
-  <div id="popup" class="popup">
+  <div id="popup" class="popup" onclick="if(event.target===this) closemenu()">
     <div class="popup-content">
+      <div class="popup-icon">🌿</div>
       <h3>Pilih Cara Masuk</h3>
-      <p>MAAF UNTUK SEKARANG BELUM SIAP KUBUAT, karena kita jarang ketemu jadi tidak ada referensi</p>
+      <p>
+        MAAF, UNTUK SEKARANG BELUM SIAP KUBUAT.
+        Karena kita jarang ketemu, jadi belum ada referensi untuk cara masuk lainnya 😄
+      </p>
       <button class="close-btn" onclick="closemenu()">Tutup</button>
     </div>
   </div>
@@ -169,8 +391,16 @@
     function login() {
       const nama = document.getElementById('nama').value.trim();
       const tglLahir = document.getElementById('tgl_lahir').value.trim();
+      const button = document.getElementById('loginButton');
 
-      // Cek data di Firestore
+      if (!nama || !tglLahir) {
+        alert("Nama dan tanggal lahir harus diisi!");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Memeriksa...";
+
       db.collection("yofa")
         .where("nama", "==", nama)
         .where("tgl_lahir", "==", tglLahir)
@@ -186,18 +416,26 @@
         .catch((error) => {
           console.error("Error:", error);
           alert("Error: " + error.message);
+        })
+        .finally(() => {
+          button.disabled = false;
+          button.textContent = "Masuk ke Halaman ✦";
         });
     }
 
-    // Buka Popup
     function openmenu() {
       document.getElementById("popup").style.display = "flex";
     }
 
-    // Tutup Popup
     function closemenu() {
       document.getElementById("popup").style.display = "none";
     }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closemenu();
+      if (e.key === "Enter") login();
+    });
   </script>
+
 </body>
 </html>
